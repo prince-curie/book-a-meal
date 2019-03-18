@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node build/index.js",
     "build": "babel api --out-dir build",
-    "dev-start": "nodemon --exec babel-node api/index.js",
+    "dev-start": "nodemon --exec babel-node API/index.js",
     "test": "nyc --require @babel/polyfill --require @babel/register _mocha api/test/*.test.js --timeout 10000 --exit",
     "cover": "cat ./coverage/lcov.info | ./node_modules/.bin/coveralls",
     "coveralls": "nyc report --reporter=text-lcov | coveralls && nyc report --reporter=lcov"
