@@ -1,7 +1,7 @@
 {
-  "name": "epic-mail",
+  "name": "book-a-meal",
   "version": "1.0.0",
-  "description": "A mailing platform",
+  "description": "A meal booking platform",
   "main": "index.js",
   "scripts": {
     "start": "node build/index.js",
@@ -13,20 +13,19 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/prince-curie/Epic-mail.git"
+    "url": "git+https://github.com/prince-curie/book-a-meal.git"
   },
   "author": "Prince-Curie",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/prince-curie/Epic-mail/issues"
+    "url": "https://github.com/prince-curie/book-a-meal/issues"
   },
-  "homepage": "https://github.com/prince-curie/Epic-mail#readme",
+  "homepage": "https://github.com/prince-curie/book-a-meal#readme",
   "engines": {
     "node": "10.15.1"
   },
   "dependencies": {
     "bcrypt": "^3.0.4",
-    "chai-datetime": "^1.5.0",
     "dotenv": "^6.2.0",
     "express": "^4.16.4",
     "joi": "^14.3.1",
@@ -43,6 +42,7 @@
     "babel-plugin-istanbul": "^5.1.1",
     "chai": "^4.2.0",
     "chai-http": "^4.2.1",
+    "chai-datetime": "^1.5.0",
     "coveralls": "^3.0.3",
     "eslint": "^5.15.0",
     "eslint-config-airbnb-base": "^13.1.0",
