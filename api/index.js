@@ -1,15 +1,15 @@
 import express from 'express';
-// import userRoutes from './routes/user.route';
 import dotenv from 'dotenv';
+import mealRoutes from './routes/meal.route';
 
 const app = express();
 dotenv.config();
 
 app.use(express.json());
 
-app.get('/', (req, res) => res.send({ data: 'Welcome to EPIC-MAIL' }));
+app.get('/', (req, res) => res.send({ data: 'Welcome to book-a-meal' }));
 
-// app.use('/api/v1/', userRoutes);
+app.use('/api/v1/', mealRoutes);
 
 const port = process.env.PORT;
 
