@@ -16,6 +16,18 @@ const mealService = {
     });
     return allMeals;
   },
+  addMealDB(req) {
+    const oldId = meals.length;
+    const newId = oldId + 1;
+    const newMeal = new MealModel();
+    newMeal.id = newId;
+    newMeal.name = req.body.name;
+    newMeal.size = req.body.size;
+    newMeal.price = req.body.price;
+    newMeal.status = req.body.status;
+    meals.push(newMeal);
+    return newMeal;
+  },
 };
 
 export default mealService;
