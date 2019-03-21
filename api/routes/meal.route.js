@@ -2,7 +2,9 @@ import { Router } from 'express';
 import mealController from '../controllers/meal.controller';
 import mealAuth from '../auth/meal.auth';
 
-const { fetchAllMeal, addMeal, updateMeal, deleteMeal } = mealController;
+const {
+  fetchAllMeal, addMeal, updateMeal, deleteMeal,
+} = mealController;
 const { authAddMeal, authUpdateAMeal } = mealAuth;
 const router = Router();
 
@@ -12,6 +14,6 @@ router.post('/meals', authAddMeal, addMeal);
 
 router.put('/meals/:name/:size', authUpdateAMeal, updateMeal);
 
-// router.delete('/meals/:name/:size', deleteMeal);
+router.delete('/meals/:name/:size', deleteMeal);
 
 export default router;

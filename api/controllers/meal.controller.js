@@ -1,7 +1,7 @@
 import mealService from '../services/meal.service';
 
 const {
-  fetchAllMealDB, addMealDB, updateMealDB, deleteMealDB 
+  fetchAllMealDB, addMealDB, updateMealDB, deleteMealDB,
 } = mealService;
 
 const controllerReturns = (res, statusNo, dataFn) => res.json({
@@ -18,6 +18,9 @@ const mealController = {
   },
   updateMeal(req, res) {
     return controllerReturns(res, 201, [updateMealDB(req)]);
+  },
+  deleteMeal(req, res) {
+    return controllerReturns(res, 200, [deleteMealDB(req)]);
   },
 };
 
