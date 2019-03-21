@@ -1,6 +1,6 @@
 import mealService from '../services/meal.service';
 
-const { fetchAllMealDB, addMealDB } = mealService;
+const { fetchAllMealDB, addMealDB, updateMealDB } = mealService;
 
 const mealController = {
   fetchAllMeal(req, res) {
@@ -13,6 +13,12 @@ const mealController = {
     return res.json({
       status: 201,
       data: [addMealDB(req)],
+    }).status(201);
+  },
+  updateMeal(req, res) {
+    return res.json({
+      status: 201,
+      data: [updateMealDB(req)],
     }).status(201);
   },
 };
