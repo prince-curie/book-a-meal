@@ -3,6 +3,11 @@ import MealModel from '../models/meals.model';
 
 const { meals } = database;
 
+const matchMeal = (req) => {
+  const matchMealArray = meals.filter(meal => meal.name === req.params.name);
+  return matchMealArray.find(meal => meal.size === req.params.size);
+};
+
 const mealService = {
   fetchAllMealDB() {
     const allMeals = meals.map((meal) => {
@@ -29,8 +34,7 @@ const mealService = {
     return newMeal;
   },
   updateMealDB(req) {
-    const matchMealArray = meals.filter(meal => meal.name === req.params.name);
-    const matchMeal = matchMealArray.find(meal => meal.size === req.params.size);
+    matchMeal(req);
     const updateAMeal = new MealModel();
     updateAMeal.id = matchMeal.id;
     updateAMeal.name = req.body.name || matchMeal.name;
