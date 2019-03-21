@@ -1,25 +1,23 @@
 import mealService from '../services/meal.service';
 
-const { fetchAllMealDB, addMealDB, updateMealDB } = mealService;
+const {
+  fetchAllMealDB, addMealDB, updateMealDB, deleteMealDB 
+} = mealService;
+
+const controllerReturns = (res, statusNo, dataFn) => res.json({
+  status: statusNo,
+  data: dataFn,
+}).status(statusNo);
 
 const mealController = {
   fetchAllMeal(req, res) {
-    return res.json({
-      status: 200,
-      data: fetchAllMealDB(),
-    }).status(200);
+    return controllerReturns(res, 200, fetchAllMealDB());
   },
   addMeal(req, res) {
-    return res.json({
-      status: 201,
-      data: [addMealDB(req)],
-    }).status(201);
+    return controllerReturns(res, 201, [addMealDB(req)]);
   },
   updateMeal(req, res) {
-    return res.json({
-      status: 201,
-      data: [updateMealDB(req)],
-    }).status(201);
+    return controllerReturns(res, 201, [updateMealDB(req)]);
   },
 };
 
