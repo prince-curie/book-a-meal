@@ -28,6 +28,18 @@ const mealService = {
     meals.push(newMeal);
     return newMeal;
   },
+  updateMealDB(req) {
+    const matchMealArray = meals.filter(meal => meal.name === req.params.name);
+    const matchMeal = matchMealArray.find(meal => meal.size === req.params.size);
+    const updateAMeal = new MealModel();
+    updateAMeal.id = matchMeal.id;
+    updateAMeal.name = req.body.name || matchMeal.name;
+    updateAMeal.size = req.body.size || matchMeal.size;
+    updateAMeal.price = req.body.price || matchMeal.price;
+    updateAMeal.status = req.body.status || matchMeal.status;
+    meals.splice(meals[matchMeal.id - 1], 1, updateAMeal);
+    return updateAMeal;
+  },
 };
 
 export default mealService;
