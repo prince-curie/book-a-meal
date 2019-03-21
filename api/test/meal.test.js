@@ -1,5 +1,6 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
+import { describe, it } from 'mocha';
 import app from '../index';
 
 chai.should();
@@ -65,6 +66,53 @@ describe('/Post meal', () => {
       .send(oldMeal)
       .end((err, res) => {
         res.should.have.status(409);
+        res.body.should.have.property('data');
+        res.body.data.should.be.a('string');
+        done(err);
+      });
+  });
+});
+
+const updateMeal = {
+  size: 'small',
+};
+
+const updateMealError = {
+  price: 'Hell',
+};
+
+describe('/PUT meal', () => {
+  it('the server should return success', (done) => {
+    chai.request(app)
+      .put('/api/v1/meals/rice and beans/medium')
+      .send(updateMeal)
+      .end((err, res) => {
+        res.should.have.status(200);
+        res.body.should.be.an('object');
+        res.body.should.have.property('data').be.an('array');
+        res.body.data[0].price.should.be.a('number');
+        res.body.data[0].status.should.be.a('string');
+        res.body.data[0].size.should.be.a('string');
+        done(err);
+      });
+  });
+  it('returns an error 404', (done) => {
+    chai.request(app)
+      .put('/api/v1/meals/rice and beans/big')
+      .send(updateMeal)
+      .end((err, res) => {
+        res.should.have.status(404);
+        res.body.should.have.property('data');
+        res.body.data.should.be.a('string');
+        done(err);
+      });
+  });
+  it('returns an error 400', (done) => {
+    chai.request(app)
+      .put('/api/v1/meals/rice and beans/small')
+      .send(updateMealError)
+      .end((err, res) => {
+        res.should.have.status(400);
         res.body.should.have.property('data');
         res.body.data.should.be.a('string');
         done(err);
