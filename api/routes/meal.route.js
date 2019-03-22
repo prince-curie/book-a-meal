@@ -5,7 +5,7 @@ import mealAuth from '../auth/meal.auth';
 const {
   fetchAllMeal, addMeal, updateMeal, deleteMeal,
 } = mealController;
-const { authAddMeal, authUpdateAMeal } = mealAuth;
+const { authAddMeal, authUpdateAMeal, authDeleteAMeal } = mealAuth;
 const router = Router();
 
 router.get('/meals', fetchAllMeal);
@@ -14,6 +14,6 @@ router.post('/meals', authAddMeal, addMeal);
 
 router.put('/meals/:name/:size', authUpdateAMeal, updateMeal);
 
-router.delete('/meals/:name/:size', deleteMeal);
+router.delete('/meals/:name/:size', authDeleteAMeal, deleteMeal);
 
 export default router;

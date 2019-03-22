@@ -48,6 +48,11 @@ const mealAuth = {
     else if (anError) authError(res, 409, 'meal already exist');
     else next();
   },
+  authDeleteAMeal(req, res, next) {
+    const matchAMeal = matchMeal(req);
+    if (!matchAMeal) authError(res, 404, 'meal not found');
+    else next();
+  },
 };
 
 export default mealAuth;
