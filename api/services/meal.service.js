@@ -37,19 +37,19 @@ const mealService = {
     return newMeal;
   },
   updateMealDB(req) {
-    matchMeal(req);
+    const matchAMeal = matchMeal(req);
     const updateAMeal = new MealModel();
-    updateAMeal.id = matchMeal.id;
-    updateAMeal.name = req.body.name || matchMeal.name;
-    updateAMeal.size = req.body.size || matchMeal.size;
-    updateAMeal.price = req.body.price || matchMeal.price;
-    updateAMeal.status = req.body.status || matchMeal.status;
-    meals.splice(meals[matchMeal.id - 1], 1, updateAMeal);
+    updateAMeal.id = matchAMeal.id;
+    updateAMeal.name = req.body.name || matchAMeal.name;
+    updateAMeal.size = req.body.size || matchAMeal.size;
+    updateAMeal.price = req.body.price || matchAMeal.price;
+    updateAMeal.status = req.body.status || matchAMeal.status;
+    meals.splice(meals[matchAMeal.id - 1], 1, updateAMeal);
     return updateAMeal;
   },
   deleteMealDB(req) {
-    matchMeal(req);
-    meals.splice(meals[matchMeal.id - 1], 1);
+    const matchAMeal = matchMeal(req);
+    meals.splice(meals[matchAMeal.id - 1], 1);
     let resetId = 1;
     meals.forEach((meal) => {
       meal.id = resetId;

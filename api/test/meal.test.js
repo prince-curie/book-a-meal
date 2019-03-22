@@ -119,3 +119,23 @@ describe('/PUT meal', () => {
       });
   });
 });
+describe('/delete endpoint', () => {
+  it('return error 404', (done) => {
+    chai.request(app)
+      .delete('/api/v1/meals/rice and beans/big')
+      .end((err, res) => {
+        res.should.have.status(404);
+        res.body.should.have.property('data').equal('meal not found');
+        done(err);
+      });
+  });
+  it('returns 200', (done) => {
+    chai.request(app)
+      .delete('/api/v1/meals/rice and beans/small')
+      .end((err, res) => {
+        res.should.have.status(200);
+        res.body.should.have.property('data');
+        done(err);
+      });
+  });
+});

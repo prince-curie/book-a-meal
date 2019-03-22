@@ -8,6 +8,11 @@ const authError = (res, statusCode, reply) => res.status(statusCode).json({
   data: reply,
 });
 
+const matchMeal = (req) => {
+  const matchMealArray = meals.filter(meal => meal.name === req.params.name);
+  return matchMealArray.find(meal => meal.size === req.params.size);
+};
+
 const schema = {
   name: Joi.string().required(),
   size: Joi.string().required(),
@@ -22,21 +27,30 @@ const schemaUpdate = {
   status: Joi.string(),
 };
 
+const error = (req) => {
+  const matchMealNameArray = meals.filter(meal => meal.name === req.body.name);
+  return matchMealNameArray.find(match => match.size === req.body.size);
+};
+
 const mealAuth = {
   authAddMeal(req, res, next) {
     const validate = Joi.validate(req.body, schema);
-    const matchMeal = meals.filter(meal => meal.name === req.body.name);
-    const error = matchMeal.find(match => match.size === req.body.size);
     if (validate.error) authError(res, 400, validate.error.details[0].message);
-    else if (error) authError(res, 409, 'meal already exist');
+    else if (error(req)) authError(res, 409, 'meal already exist');
     else next();
   },
   authUpdateAMeal(req, res, next) {
-    const matchMealArray = meals.filter(meal => meal.name === req.params.name);
-    const matchMeal = matchMealArray.find(meal => meal.size === req.params.size);
+    const anError = error(req);
+    const matchAMeal = matchMeal(req);
     const validate = Joi.validate(req.body, schemaUpdate);
-    if (!matchMeal || !matchMealArray) authError(res, 404, 'meal does not exist');
+    if (!matchAMeal) authError(res, 404, 'meal does not exist');
     else if (validate.error) authError(res, 400, validate.error.details[0].message);
+    else if (anError) authError(res, 409, 'meal already exist');
+    else next();
+  },
+  authDeleteAMeal(req, res, next) {
+    const matchAMeal = matchMeal(req);
+    if (!matchAMeal) authError(res, 404, 'meal not found');
     else next();
   },
 };
