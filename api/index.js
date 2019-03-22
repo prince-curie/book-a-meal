@@ -6,7 +6,7 @@ const app = express();
 dotenv.config();
 
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: false }));
 
 app.get('/', (req, res) => res.send({ data: 'Welcome to book-a-meal' }));
 
