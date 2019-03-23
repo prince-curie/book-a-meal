@@ -25,6 +25,19 @@ const oldMeal = {
   status: 'available',
 };
 
+const updateMeal = {
+  size: 'small',
+};
+const updateMealError = {
+  price: 'Hell',
+};
+const updateMealError2 = {
+  name: 'rice and beans',
+  price: 500,
+  size: 'small',
+  status: 'available',
+};
+
 describe('/get meal', () => {
   it('the server should return a status code of 200', (done) => {
     chai.request(app)
@@ -73,14 +86,6 @@ describe('/Post meal', () => {
   });
 });
 
-const updateMeal = {
-  size: 'small',
-};
-
-const updateMealError = {
-  price: 'Hell',
-};
-
 describe('/PUT meal', () => {
   it('the server should return success', (done) => {
     chai.request(app)
@@ -113,6 +118,17 @@ describe('/PUT meal', () => {
       .send(updateMealError)
       .end((err, res) => {
         res.should.have.status(400);
+        res.body.should.have.property('data');
+        res.body.data.should.be.a('string');
+        done(err);
+      });
+  });
+  it('returns an error 409', (done) => {
+    chai.request(app)
+      .put('/api/v1/meals/rice and beans/small')
+      .send(updateMealError2)
+      .end((err, res) => {
+        res.should.have.status(409);
         res.body.should.have.property('data');
         res.body.data.should.be.a('string');
         done(err);
