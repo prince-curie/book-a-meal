@@ -1,12 +1,9 @@
 import database from '../database/database';
 import MealModel from '../models/meals.model';
+import functions from '../functions/function';
 
 const { meals } = database;
-
-const matchMeal = (req) => {
-  const matchMealArray = meals.filter(meal => meal.name === req.params.name);
-  return matchMealArray.find(meal => meal.size === req.params.size);
-};
+const { matchMeal } = functions;
 
 const newMealFn = (resetId, meal) => {
   const newMeal = new MealModel();
@@ -37,7 +34,7 @@ const mealService = {
     return newMeal;
   },
   updateMealDB(req) {
-    const matchAMeal = matchMeal(req);
+    const matchAMeal = matchMeal(req.params);
     const updateAMeal = new MealModel();
     updateAMeal.id = matchAMeal.id;
     updateAMeal.name = req.body.name || matchAMeal.name;
@@ -48,7 +45,7 @@ const mealService = {
     return updateAMeal;
   },
   deleteMealDB(req) {
-    const matchAMeal = matchMeal(req);
+    const matchAMeal = matchMeal(req.params);
     meals.splice(meals[matchAMeal.id - 1], 1);
     let resetId = 1;
     meals.forEach((meal) => {
