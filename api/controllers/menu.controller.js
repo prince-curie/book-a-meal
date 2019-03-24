@@ -3,7 +3,7 @@ import menuService from '../services/menu.service';
 const { addMenuDB } = menuService;
 const controllerReturns = (res, statusNo, dataFn) => res.json({
   status: statusNo,
-  ddata: dataFn,
+  data: dataFn,
 }).status(statusNo);
 
 const menuController = {
