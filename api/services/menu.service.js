@@ -1,10 +1,10 @@
 import database from '../database/database';
-import MealModel from '../models/meals.model';
+import MenuModel from '../models/menu.model';
 
 const { meals } = database;
 
 const newMenuFn = (resetId, meal) => {
-  const newMeal = new MealModel();
+  const newMeal = new MenuModel();
   newMeal.id = resetId || meal.id;
   newMeal.name = meal.name;
   newMeal.price = meal.price;
@@ -21,7 +21,7 @@ const menuService = {
   addMenuDB(req) {
     const oldId = meals.length;
     const newId = oldId + 1;
-    const newMeal = new MealModel();
+    const newMeal = new MenuModel();
     newMeal.id = newId;
     newMeal.name = req.body.name;
     newMeal.size = req.body.size;
