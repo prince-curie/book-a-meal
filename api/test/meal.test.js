@@ -97,7 +97,7 @@ describe('/PUT meal', () => {
         res.body.should.have.property('data').be.an('array');
         res.body.data[0].price.should.be.a('number');
         res.body.data[0].status.should.be.a('string');
-        res.body.data[0].size.should.be.a('string');
+        res.body.data[0].size.should.be.a('string').oneOf(['small', 'medium']);
         done(err);
       });
   });

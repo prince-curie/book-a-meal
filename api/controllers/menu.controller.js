@@ -1,10 +1,8 @@
 import menuService from '../services/menu.service';
+import functions from '../functions/function';
 
 const { addMenuDB, fetchAllMenuDB } = menuService;
-const controllerReturns = (res, statusNo, dataFn) => res.json({
-  status: statusNo,
-  data: dataFn,
-}).status(statusNo);
+const { controllerReturns } = functions;
 
 const menuController = {
   addMenu(req, res) {
