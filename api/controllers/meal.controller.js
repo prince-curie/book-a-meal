@@ -1,17 +1,15 @@
 import mealService from '../services/meal.service';
+import functions from '../functions/function';
 
 const {
-  fetchAllMealDB, addMealDB, updateMealDB, deleteMealDB,
+  fetchAllMeal, addMealDB, updateMealDB, deleteMealDB,
 } = mealService;
 
-const controllerReturns = (res, statusNo, dataFn) => res.json({
-  status: statusNo,
-  data: dataFn,
-}).status(statusNo);
+const { controllerReturns } = functions;
 
 const mealController = {
   fetchAllMeal(req, res) {
-    return controllerReturns(res, 200, fetchAllMealDB());
+    return controllerReturns(res, 200, fetchAllMeal());
   },
   addMeal(req, res) {
     return controllerReturns(res, 201, [addMealDB(req)]);

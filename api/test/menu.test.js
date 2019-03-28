@@ -17,11 +17,6 @@ const validateMeal = {
   size: 'big',
   price: '',
 };
-const oldMeal = {
-  name: 'rice and beans',
-  price: 500,
-  size: 'small',
-};
 
 describe('/Post menu', () => {
   it('the server should return a status code of 200', (done) => {
@@ -54,6 +49,18 @@ describe('/Post menu', () => {
         res.should.have.status(409);
         res.body.should.have.property('data');
         res.body.data.should.be.a('string');
+        done(err);
+      });
+  });
+});
+describe('/get menu', () => {
+  it('the server should return a status code of 200', (done) => {
+    chai.request(app)
+      .get('/api/v1/menu')
+      .end((err, res) => {
+        res.should.have.status(200);
+        res.should.be.an('object');
+        res.body.should.have.property('data');
         done(err);
       });
   });
