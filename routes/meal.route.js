@@ -1,6 +1,6 @@
 import { Router } from 'express';
-import mealController from '../controllers/meal.controller';
-import mealAuth from '../auth/meal.auth';
+import mealController from '../api/controllers/meal.controller';
+import mealAuth from '../api/auth/meal.auth';
 
 const {
   fetchAllMeal, addMeal, updateMeal, deleteMeal,

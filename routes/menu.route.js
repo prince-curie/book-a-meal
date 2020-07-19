@@ -1,6 +1,6 @@
 import { Router } from 'express';
-import menuController from '../controllers/menu.controller';
-import menuAuth from '../auth/menu.auth';
+import menuController from '../api/controllers/menu.controller';
+import menuAuth from '../api/auth/menu.auth';
 
 const { addMenu, fetchAllMenu } = menuController;
 const { authAddMenu } = menuAuth;

@@ -4,10 +4,14 @@
   "description": "A meal booking platform",
   "main": "index.js",
   "scripts": {
+    "migration:run": "npx sequelize-cli db:migrate",
+    "migration:undo": "npx sequelize-cli db:migrate:undo",
+    "migration:undo:all": "npx sequelize-cli db:migrate:undo:all",
+    "seed:all": "npx sequelize-cli db:seed:all",
     "start": "node build/index.js",
     "build": "babel api --out-dir build",
-    "dev-start": "nodemon --exec babel-node api/index.js",
-    "test": "nyc --require @babel/polyfill --require @babel/register _mocha api/test/*.test.js --timeout 10000 --exit",
+    "dev-start": "nodemon --exec babel-node index.js",
+    "test": "nyc --require @babel/polyfill --require @babel/register mocha test/ --timeout 10000 --exit",
     "cover": "cat ./coverage/lcov.info | ./node_modules/.bin/coveralls",
     "coveralls": "nyc report --reporter=text-lcov | coveralls && nyc report --reporter=lcov"
   },
@@ -22,7 +26,7 @@
   },
   "homepage": "https://github.com/prince-curie/book-a-meal#readme",
   "engines": {
-    "node": "10.15.1"
+    "node": "12.18.2"
   },
   "dependencies": {
     "bcrypt": "^3.0.6",
@@ -51,9 +55,10 @@
     "eslint": "^5.16.0",
     "eslint-config-airbnb-base": "^13.2.0",
     "eslint-plugin-import": "^2.18.2",
-    "mocha": "^6.2.0",
+    "mocha": "^8.0.1",
     "mocha-lcov-reporter": "^1.3.0",
-    "nyc": "^13.3.0",
+    "nodemon": "^2.0.4",
+    "nyc": "^15.1.0",
     "sequelize-cli": "^5.5.0"
   }
 }

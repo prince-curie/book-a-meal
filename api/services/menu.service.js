@@ -1,4 +1,4 @@
-import MenuModel from '../models/menu.model';
+import MenuModel from '../../models/menu.model';
 import functions from '../functions/function';
 
 const { newMenuFn, fetchAllMealDB, addMeal } = functions;
