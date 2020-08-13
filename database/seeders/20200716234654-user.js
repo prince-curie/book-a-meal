@@ -20,7 +20,8 @@ module.exports = {
      
     let hashedPassword = await bcrypt.hash(plainText, salt)
       .then( hash => hash)
-    
+      
+    await queryInterface.bulkDelete('Users', null, {});
     await queryInterface.bulkInsert('Users', [{
       firstName: 'Caterer',
       lastName: 'Admin',
