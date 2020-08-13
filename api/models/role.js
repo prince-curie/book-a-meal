@@ -8,7 +8,7 @@ const User = require('./user');
 const UserRole = require('./userrole');
 
 module.exports = (sequelize, DataTypes) => {
-  const Role = sequelize.define('Role', {
+  const Role = sequelize.define('Roles', {
     role_label: { type: DataTypes.STRING }
   }, {}, )    
 

@@ -2,13 +2,11 @@
 const {
   Model
 } = require('sequelize');
-const Role = require('./Role');
-const UserRole = require('./userrole');
 
 const bcrypt = require('bcrypt')
 
 module.exports = (sequelize, DataTypes) => {
-  const User = sequelize.define('User', {
+  const User = sequelize.define('Users', {
     firstName: { type: DataTypes.STRING },
     lastName: { type: DataTypes.STRING },
     email: { type: DataTypes.STRING },
