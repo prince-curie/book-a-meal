@@ -6,13 +6,15 @@ const {
 const bcrypt = require('bcrypt')
 
 module.exports = (sequelize, DataTypes) => {
-  const User = sequelize.define('Users', {
+  const User = sequelize.define('User', {
     firstName: { type: DataTypes.STRING },
     lastName: { type: DataTypes.STRING },
     email: { type: DataTypes.STRING },
     phoneNumber: { type: DataTypes.BIGINT },
     password: { type: DataTypes.STRING },
-  }, {}, )
+  }, {
+    tableName: 'users'
+  }, )
 
   User.beforeCreate( async (user, options) => {
     // do stuff
