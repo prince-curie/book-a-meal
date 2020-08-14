@@ -21,8 +21,8 @@ module.exports = {
      * }], {});
     */
 
-    await queryInterface.bulkDelete('UserRoles', null, {});
-    await queryInterface.bulkInsert('UserRoles', userRoleSeeds, {});
+    await queryInterface.bulkDelete('user_roles', null, {});
+    await queryInterface.bulkInsert('user_roles', userRoleSeeds, {});
   },
 
   down: async (queryInterface, Sequelize) => {
@@ -33,6 +33,6 @@ module.exports = {
      * await queryInterface.bulkDelete('People', null, {});
      */
 
-    await queryInterface.bulkDelete('UserRoles', null, {});
+    await queryInterface.bulkDelete('user_roles', null, {});
   }
 };
