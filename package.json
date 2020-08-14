@@ -11,7 +11,7 @@
     "start": "node build/index.js",
     "build": "babel api --out-dir build",
     "dev-start": "nodemon --exec babel-node index.js",
-    "pretest": "env NODE_ENV=test npx sequelize-cli db:seed:all && env NODE_ENV=test npx sequelize-cli db:migrate",
+    "pretest": "env NODE_ENV=test npx sequelize-cli db:migrate && env NODE_ENV=test npx sequelize-cli db:seed:all",
     "test": "env NODE_ENV=test nyc --require @babel/polyfill --require @babel/register mocha test/ --timeout 10000 --exit",
     "posttest": "env NODE_ENV=test && npx sequelize-cli db:migrate:undo:all",
     "cover": "cat ./coverage/lcov.info | ./node_modules/.bin/coveralls",
