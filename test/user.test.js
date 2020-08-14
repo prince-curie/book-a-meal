@@ -1,7 +1,7 @@
 import chai, { assert } from 'chai';
 import chaiHttp from 'chai-http';
 // import { describe, it } from 'mocha';
-import app from '../index';
+import app from '../api/index';
 import UserController from '../api/controllers/user.controller'
 const Controller = new UserController()
 
